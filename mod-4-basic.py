@@ -33,7 +33,11 @@ def savings(gross_pay, tax_rate, expenses):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    
+    after_tax_pay = gross_pay - int(gross_pay * tax_rate)
+    remaining_savings = after_tax_pay - expenses
+
+    return remaining_savings
 
 def material_waste(total_material, material_units, num_jobs, job_consumption):
     '''Material Waste.
@@ -68,7 +72,14 @@ def material_waste(total_material, material_units, num_jobs, job_consumption):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    
+    total_consumed = num_jobs * job_consumption
+
+    remaining_material = total_material - total_consumed
+
+    result = f"{remaining_material}{material_units}"
+
+    return result
 
 def interest(principal, rate, periods):
     '''Interest.
@@ -98,7 +109,12 @@ def interest(principal, rate, periods):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+
+    simple_interest = principal * rate * periods
+    final_amount = principal + simple_interest
+    final_amount_rounded_down = int(final_amount)
+
+    return final_amount_rounded_down
 
 def body_mass_index(weight, height):
     '''Body Mass Index.
@@ -130,4 +146,19 @@ def body_mass_index(weight, height):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    
+    # Conversion constants
+    POUNDS_TO_KILOGRAMS = 0.453592
+    FEET_TO_METERS = 0.3048
+    INCHES_TO_METERS = 0.0254
+
+    # Convert weight from pounds to kilograms
+    weight_kg = weight * 0.453592
+
+    # Convert height from feet and inches to meters
+    height_meters = height[0] * 0.3048 + height[1] * 0.0254
+
+    # Calculate BMI
+    bmi = weight_kg / (height_meters ** 2)
+
+    return bmi
