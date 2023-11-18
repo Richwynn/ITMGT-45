@@ -37,7 +37,20 @@ def shift_letter(letter, shift):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    
+    if letter == " ":
+        return letter
+
+    shift = shift % 26
+
+    shifted_code = ord(letter) + shift
+    if shifted_code > ord('Z'):
+        shifted_code -= 26
+    elif shifted_code < ord('A'):
+        shifted_code += 26
+
+    shifted_letter = chr(shifted_code)
+    return shifted_letter
 
 def caesar_cipher(message, shift):
     '''Caesar Cipher. 
@@ -59,7 +72,23 @@ def caesar_cipher(message, shift):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    
+    encrypted_message = ""
+
+    for char in message:
+        if char.isalpha():
+            shifted_code = ord(char) + shift % 26
+
+            if shifted_code > ord('Z'):
+                shifted_code -= 26
+            elif shifted_code < ord('A'):
+                shifted_code += 26
+
+            encrypted_message += chr(shifted_code)
+        else:
+            encrypted_message += char
+
+    return encrypted_message
 
 def shift_by_letter(letter, letter_shift):
     '''Shift By Letter. 
@@ -89,7 +118,20 @@ def shift_by_letter(letter, letter_shift):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    
+    if letter == " ":
+        return letter
+
+    numeric_shift = ord(letter_shift) - ord('A')
+    numeric_shift = numeric_shift % 26
+
+    shifted_code = ord(letter) + numeric_shift
+    if shifted_code > ord('Z'):
+        shifted_code -= 26
+
+    shifted_letter = chr(shifted_code)
+    return shifted_letter
+
 
 def vigenere_cipher(message, key):
     '''Vigenere Cipher. 
@@ -120,6 +162,30 @@ def vigenere_cipher(message, key):
     str
         the message, shifted appropriately.
     '''
-    # Replace `pass` with your code. 
-    # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    
+    extended_key = ""
+    key_index = 0
+    for char in message:
+        if char != " ":
+            extended_key += key[key_index % len(key)]
+            key_index += 1
+        else:
+            extended_key += " "
+
+    encrypted_message = ""
+    for i in range(len(message)):
+        if message[i] != " ":
+            # Calculate the shift amount for the letter
+            shift = ord(extended_key[i]) - ord('A')
+
+            # Shift the letter and wrap around if necessary
+            shifted_code = ord(message[i]) + shift
+            if shifted_code > ord('Z'):
+                shifted_code -= 26
+
+            encrypted_message += chr(shifted_code)
+        else:
+            # Keep spaces as is
+            encrypted_message += " "
+
+    return encrypted_message
