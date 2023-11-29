@@ -49,7 +49,7 @@ def relationship_status(from_member, to_member, social_graph):
     elif from_member in social_graph[to_member]['following']:
         answer = 'followed by'
     else:
-        answer='no relationship'
+        answer = 'no relationship'
     
     return answer
 
@@ -100,37 +100,6 @@ def tic_tac_toe(board):
     return "NO WINNER"
 
 def eta(first_stop, second_stop, route_map):
-    '''ETA. 
-    20 points.
-
-    A shuttle van service is tasked to travel along a predefined circlar route.
-    This route is divided into several legs between stops.
-    The route is one-way only, and it is fully connected to itself.
-
-    This function returns how long it will take the shuttle to arrive at a stop
-    after leaving another stop.
-
-    Please see the sample data file in this same folder for sample data. The route map will
-    adhere to the same pattern. The route map may contain more legs and more stops,
-    but it will always be one-way and fully enclosed.
-
-    Parameters
-    ----------
-    first_stop: str
-        the stop that the shuttle will leave
-    second_stop: str
-        the stop that the shuttle will arrive at
-    route_map: dict
-        the data describing the routes
-
-    Returns
-    -------
-    int
-        the time it will take the shuttle to travel from first_stop to second_stop
-    '''
-    # Replace `pass` with your code. 
-    # Stay within the function. Only use the parameters as input. The function should return your answer.
-    def eta(first_stop, second_stop, route_map):
     '''ETA. 
     20 points.
 
