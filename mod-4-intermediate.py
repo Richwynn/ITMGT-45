@@ -164,27 +164,84 @@ def vigenere_cipher(message, key):
     '''
 
     encrypted_message = ""
+    newkey = ""
+
+def vigenere_cipher(message, key):
+    '''Vigenere Cipher. 
+    6 points.
+    
+    Encrypts a message using a keyphrase instead of a static number.
+    Every letter in the message is shifted by the number represented by the 
+        respective letter in the key.
+    Spaces should be ignored.
+
+    Example:
+    vigenere_cipher("A C", "KEY") -> "K A"
+
+    If needed, the keyphrase is extended to match the length of the key.
+        If the key is "KEY" and the message is "LONGTEXT",
+        the key will be extended to be "KEYKEYKE".
+
+    Parameters
+    ----------
+    message: str
+        a string of uppercase English letters and spaces.
+    key: str
+        a string of uppercase English letters. Will never be longer than the message.
+        Will never contain spaces.
+
+    Returns
+    -------
+    str
+        the message, shifted appropriately.
+    '''
+
+    encrypted_message = ""
+    newkey = ""
 
     if len(message) > len(key): 
-        for i in range(len(message)): 
-            encrypted_message += key[i % len(key)]
-        return encrypted_message
-    else: 
+        for j in range(len(message)): 
+            newkey += str(key[j % len(key)])
+        newkey = str(newkey)
+
         for i in range(len(message)):
             if message[i] != " ":
                 # Calculate the shift amount for the letter
-                shift = ord(key[i]) - ord('A')
-    
+                shift = ord(newkey[i]) - ord('A')
+
                 # Shift the letter and wrap around if necessary
                 shifted_code = ord(message[i]) + shift
                 if shifted_code > ord('Z'):
                     shifted_code -= 26
                 elif shifted_code < ord('A'):
                     shifted_code += 26
-    
+
                 encrypted_message += chr(shifted_code)
             else:
                 # Keep spaces as is
                 encrypted_message += " "
 
-    return encrypted_message
+        return encrypted_message
+
+        
+
+    else: 
+    
+        for i in range(len(message)):
+            if message[i] != " ":
+                # Calculate the shift amount for the letter
+                shift = ord(key[i]) - ord('A')
+
+                # Shift the letter and wrap around if necessary
+                shifted_code = ord(message[i]) + shift
+                if shifted_code > ord('Z'):
+                    shifted_code -= 26
+                elif shifted_code < ord('A'):
+                    shifted_code += 26
+
+                encrypted_message += chr(shifted_code)
+            else:
+                # Keep spaces as is
+                encrypted_message += " "
+
+        return encrypted_message
