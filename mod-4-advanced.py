@@ -131,16 +131,58 @@ def eta(first_stop, second_stop, route_map):
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
 
-    current_time = 0
-    current_stop = first_stop
+def eta(first_stop, second_stop, route_map):
+    '''ETA. 
+    20 points.
 
-    while current_stop != second_stop:
-        current_leg = (current_stop, second_stop)
-        if current_leg in route_map:
-            travel_time = route_map[current_leg]['travel_time_mins']
-            current_time += travel_time
-            current_stop = second_stop
-        else:
-            return -1
+    A shuttle van service is tasked to travel along a predefined circlar route.
+    This route is divided into several legs between stops.
+    The route is one-way only, and it is fully connected to itself.
 
-    return current_time
+    This function returns how long it will take the shuttle to arrive at a stop
+    after leaving another stop.
+
+    Please see the sample data file in this same folder for sample data. The route map will
+    adhere to the same pattern. The route map may contain more legs and more stops,
+    but it will always be one-way and fully enclosed.
+
+    Parameters
+    ----------
+    first_stop: str
+        the stop that the shuttle will leave
+    second_stop: str
+        the stop that the shuttle will arrive at
+    route_map: dict
+        the data describing the routes
+
+    Returns
+    -------
+    int
+        the time it will take the shuttle to travel from first_stop to second_stop
+    '''
+    # Replace `pass` with your code. 
+    # Stay within the function. Only use the parameters as input. The function should return your answer.
+    
+    list_of_keys = list(route_map.keys())
+    first_keys = [item[0] for item in list_of_keys]
+    second_keys = [item[1] for item in list_of_keys]
+    new_time = list(route_map.values())
+    answer = []
+    final = []
+    
+    first_position = first_keys.index(first_stop)
+    second_position = second_keys.index(second_stop)
+        
+    for x in range(len(new_time)):
+            answer = answer + list(new_time[x].values())
+    
+    if first_stop == second_stop:
+        return sum(answer)
+    elif first_position == second_position:
+        return answer[first_position]
+    elif first_position < second_position:
+        final = answer[first_position : second_position + 1]
+        return sum(final)
+    elif first_position > second_position:
+        final = answer[first_position:] + answer[:second_position + 1]
+        return sum(final)
