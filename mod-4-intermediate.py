@@ -162,26 +162,20 @@ def vigenere_cipher(message, key):
     str
         the message, shifted appropriately.
     '''
-    
-    extended_key = ""
-    key_index = 0
-    for char in message:
-        if char != " ":
-            extended_key += key[key_index % len(key)]
-            key_index += 1
-        else:
-            extended_key += " "
 
     encrypted_message = ""
+
     for i in range(len(message)):
         if message[i] != " ":
             # Calculate the shift amount for the letter
-            shift = ord(extended_key[i]) - ord('A')
+            shift = ord(key[i]) - ord('A')
 
             # Shift the letter and wrap around if necessary
             shifted_code = ord(message[i]) + shift
             if shifted_code > ord('Z'):
                 shifted_code -= 26
+            elif shifted_code < ord('A'):
+                shifted_code += 26
 
             encrypted_message += chr(shifted_code)
         else:
