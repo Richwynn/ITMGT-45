@@ -77,7 +77,7 @@ def material_waste(total_material, material_units, num_jobs, job_consumption):
 
     remaining_material = total_material - total_consumed
 
-    result = f"{remaining_material }{material_units}"
+    result = str(remaining_material) + " " + material_units
 
     return result
 
@@ -144,13 +144,9 @@ def body_mass_index(weight, height):
     float
         the BMI of the person.
     '''
+    
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    
-    # Conversion constants
-    POUNDS_TO_KILOGRAMS = 0.453592
-    FEET_TO_METERS = 0.3048
-    INCHES_TO_METERS = 0.0254
 
     # Convert weight from pounds to kilograms
     weight_kg = weight * 0.453592
