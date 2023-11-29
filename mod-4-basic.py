@@ -77,7 +77,7 @@ def material_waste(total_material, material_units, num_jobs, job_consumption):
 
     remaining_material = total_material - total_consumed
 
-    result = f"{remaining_material}{material_units}"
+    result = f"{remaining_material }{material_units}"
 
     return result
 
