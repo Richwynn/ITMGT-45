@@ -41,7 +41,17 @@ def relationship_status(from_member, to_member, social_graph):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+
+    if to_member in social_graph[from_member]['following'] and from_member in social_graph[to_member]['following']:
+        answer = 'friends'
+    elif to_member in social_graph[from_member]['following']:
+        answer = 'follower'
+    elif from_member in social_graph[to_member]['following']:
+        answer = 'followed by'
+    else:
+        answer='no relationship'
+    
+    return answer
 
 
 def tic_tac_toe(board):
@@ -70,7 +80,24 @@ def tic_tac_toe(board):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    size = len(board)
+
+    for i in range(size):
+        row = board[i]
+        column = [board[j][i] for j in range(size)]
+        if len(set(row)) == 1 and row[0] != '':
+            return row[0]
+        if len(set(column)) == 1 and column[0] != '':
+            return column[0]
+
+    diagonal1 = [board[i][i] for i in range(size)]
+    diagonal2 = [board[i][size - i - 1] for i in range(size)]
+    if len(set(diagonal1)) == 1 and diagonal1[0] != '':
+        return diagonal1[0]
+    if len(set(diagonal2)) == 1 and diagonal2[0] != '':
+        return diagonal2[0]
+
+    return "NO WINNER"
 
 def eta(first_stop, second_stop, route_map):
     '''ETA. 
@@ -103,4 +130,48 @@ def eta(first_stop, second_stop, route_map):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    def eta(first_stop, second_stop, route_map):
+    '''ETA. 
+    20 points.
+
+    A shuttle van service is tasked to travel along a predefined circlar route.
+    This route is divided into several legs between stops.
+    The route is one-way only, and it is fully connected to itself.
+
+    This function returns how long it will take the shuttle to arrive at a stop
+    after leaving another stop.
+
+    Please see the sample data file in this same folder for sample data. The route map will
+    adhere to the same pattern. The route map may contain more legs and more stops,
+    but it will always be one-way and fully enclosed.
+
+    Parameters
+    ----------
+    first_stop: str
+        the stop that the shuttle will leave
+    second_stop: str
+        the stop that the shuttle will arrive at
+    route_map: dict
+        the data describing the routes
+
+    Returns
+    -------
+    int
+        the time it will take the shuttle to travel from first_stop to second_stop
+    '''
+    # Replace `pass` with your code. 
+    # Stay within the function. Only use the parameters as input. The function should return your answer.
+
+    current_time = 0
+    current_stop = first_stop
+
+    while current_stop != second_stop:
+        current_leg = (current_stop, second_stop)
+        if current_leg in route_map:
+            travel_time = route_map[current_leg]['travel_time_mins']
+            current_time += travel_time
+            current_stop = second_stop
+        else:
+            return -1
+
+    return current_time
